@@ -48,7 +48,7 @@ module alu_control(
 		   FUNC_SLL	:  rtype_op = SLL_OP;
 		   FUNC_SRL	:  rtype_op = SRL_OP;
 			default:    rtype_op = 4'd0;
-		endcase
+		endcase 
 	end
 
 	always @(*) begin
