@@ -23,11 +23,13 @@ module alu_control(
    parameter [3:0] SUB_OP        = 4'd5;
    parameter [3:0] SLT_OP        = 4'd7;
    parameter [3:0] NOR_OP        = 4'd12; 
+   parameter [3:0] MUL_OP        = 4'd8;
    //The decoding of the instruction funtion field into the desired
    //alu operation can be found in Figure 4.12 of the Patterson Book,
    //section 4.4
    parameter [5:0] FUNC_ADD      = 6'b100000;
    parameter [5:0] FUNC_SUB      = 6'b100010;
+   parameter [5:0] FUNC_MUL      = 6'b011000;
    parameter [5:0] FUNC_AND      = 6'b100100;
    parameter [5:0] FUNC_OR       = 6'b100101;
    parameter [5:0] FUNC_NOR      = 6'b100111;
@@ -41,6 +43,7 @@ module alu_control(
 		case(function_field)
 		   FUNC_ADD	:  rtype_op = ADD_OP;
 		   FUNC_SUB	:  rtype_op = SUB_OP;
+		   FUNC_MUL :  rtype_op = MUL_OP;
 		   FUNC_AND	:  rtype_op = AND_OP;
 		   FUNC_OR 	:  rtype_op = OR_OP; 
 		   FUNC_NOR	:  rtype_op = NOR_OP;
