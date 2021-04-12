@@ -38,7 +38,7 @@ module cpu(
 
 wire              zero_flag;
 wire [      31:0] if_branch_pc,if_updated_pc,current_pc,if_jump_pc,
-                  id_branch_pc, id_updated_pc, id_jump_pc,if_instruction,
+                  id_branch_pc, id_updated_pc, id_jump_pc,instruction,
                   id_instruction, exe_instruction, 
                   mem_instruction, wb_instruction;
 wire [       1:0] if_alu_op, id_alu_op, exe_alu_op;
@@ -89,7 +89,7 @@ sram #(
    .wen      (1'b0          ),
    .ren      (1'b1          ),
    .wdata    (32'b0         ),
-   .rdata    (if_instruction   ),   
+   .rdata    (instruction   ),   
    .addr_ext (addr_ext      ),
    .wen_ext  (wen_ext       ), 
    .ren_ext  (ren_ext       ),
@@ -98,7 +98,7 @@ sram #(
 );
 
 control_unit control_unit(
-   .opcode   (if_instruction[31:26]),
+   .opcode   (instruction[31:26]),
    .reg_dst  (if_reg_dst           ),
    .branch   (branch            ),
    .mem_read (if_mem_read          ),
@@ -125,7 +125,7 @@ reg_arstn_en #(
 ) data_pipe_IF_ID(
       .clk   (clk       ),
       .arst_n(arst_n    ),
-      .din   ({if_instruction, if_updated_pc, if_branch_pc, if_jump_pc} ),
+      .din   ({instruction, if_updated_pc, if_branch_pc, if_jump_pc} ),
       .en    (enable    ),
       .dout  ({id_instruction, id_updated_pc, id_branch_pc, id_jump_pc})
 );   
