@@ -40,7 +40,9 @@ wire              zero_flag;
 wire [      31:0] if_branch_pc,if_updated_pc,current_pc,if_jump_pc,
                   id_branch_pc, id_updated_pc, id_jump_pc,instruction,
                   id_instruction, exe_instruction, 
-                  mem_instruction, wb_instruction;
+                  mem_instruction, wb_instruction,
+                  forw_operand_rs, forw_operand_rt,
+                  alu_operand_0, alu_operand_2_non_forw;
 wire [       1:0] if_alu_op, id_alu_op, exe_alu_op;
 wire [       3:0] alu_control;
 wire              if_reg_dst,branch,if_mem_read,if_mem_2_reg,
@@ -192,49 +194,49 @@ mux_2 #(
    .input_a (exe_immediate_extended),
    .input_b (exe_regfile_data_2    ),
    .select_a(exe_alu_src           ),
-   .mux_out (alu_operand_2     )
+   .mux_out (alu_operand_2_non_forw     )
 );
 
 mux_2 #(
    .DATA_W(32)
 ) alu_operand_mux_forw_value_in0 (
-   .input_a (exe_immediate_extended),
-   .input_b (exe_regfile_data_2    ),
-   .select_a(exe_alu_src           ),
-   .mux_out (alu_operand_2     )
+   .input_a (mem_alu_out),
+   .input_b (regfile_wdata ),
+   .select_a(forw_operand_rs_mux_mem),
+   .mux_out (forw_operand_rs     )
 );
 
 mux_2 #(
    .DATA_W(32)
 ) alu_operand_mux_forw_value_in1 (
-   .input_a (exe_immediate_extended),
-   .input_b (exe_regfile_data_2    ),
-   .select_a(exe_alu_src           ),
-   .mux_out (alu_operand_2     )
+   .input_a (mem_alu_out),
+   .input_b (regfile_wdata   ),
+   .select_a(forw_operand_rt_mux_mem           ),
+   .mux_out (forw_operand_rt     )
 );
 
 mux_2 #(
    .DATA_W(32)
 ) alu_operand_mux_forw_in0 (
-   .input_a (exe_immediate_extended),
-   .input_b (exe_regfile_data_2    ),
-   .select_a(exe_alu_src           ),
-   .mux_out (alu_operand_2     )
+   .input_a (forw_operand_rs),
+   .input_b (exe_regfile_data_1   ),
+   .select_a(forw_operand_rs_mux_wb          ),
+   .mux_out (alu_operand_0     )
 );
 
 mux_2 #(
    .DATA_W(32)
 ) alu_operand_mux_forw_in1 (
-   .input_a (exe_immediate_extended),
-   .input_b (exe_regfile_data_2    ),
-   .select_a(exe_alu_src           ),
+   .input_a (forw_operand_rt),
+   .input_b (alu_operand_2_non_forw    ),
+   .select_a(forw_operand_rt_mux_wb          ),
    .mux_out (alu_operand_2     )
 );
 
 alu#(
    .DATA_W(32)
 ) alu(
-   .alu_in_0 (exe_regfile_data_1),
+   .alu_in_0 (alu_operand_0),
    .alu_in_1 (alu_operand_2 ),
    .alu_ctrl (alu_control   ),
    .alu_out  (exe_alu_out       ),
@@ -341,8 +343,8 @@ forw_unit forwarding_unit(
   .exe_reg_rt(exe_instruction[20:16]),
   .forw_operand_rs(forw_operand_rs_mux_mem),
   .forw_operand_rt(forw_operand_rt_mux_mem),
-  .forw_operand_rs_wb(forw_operand_rs_mux_wb),
-  .forw_operand_rt_wb(forw_operand_rt_mux_wb)
+  .forw_operand_rs_wb_mem(forw_operand_rs_mux_wb),
+  .forw_operand_rt_wb_mem(forw_operand_rt_mux_wb)
   );
    
    
