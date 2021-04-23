@@ -51,8 +51,11 @@ wire              if_reg_dst,branch,if_mem_read,if_mem_2_reg,
                   exe_mem_write,exe_alu_src, exe_reg_write, 
                   mem_reg_dst,mem_mem_read,mem_mem_2_reg,
                   mem_mem_write, mem_reg_write,
-                  wb_reg_dst,wb_mem_2_reg, wb_reg_write;
-wire [       4:0] regfile_waddr;
+                  wb_reg_dst,wb_mem_2_reg, 
+                  forw_operand_rs_mux_mem, forw_operand_rt_mux_mem,
+                  forw_operand_rs_mux_wb, forw_operand_rt_mux_wb,
+                  wb_reg_write;
+wire [       4:0] regfile_waddr, mem_reg_rd;
 wire [      31:0] regfile_wdata, mem_dram_data, wb_dram_data,
                   exe_alu_out, mem_alu_out, wb_alu_out,
                   id_regfile_data_1,id_regfile_data_2,
@@ -185,13 +188,48 @@ alu_control alu_ctrl(
 
 mux_2 #(
    .DATA_W(32)
-) alu_operand_mux (
+) alu_operand_mux_in_1 (
    .input_a (exe_immediate_extended),
    .input_b (exe_regfile_data_2    ),
    .select_a(exe_alu_src           ),
    .mux_out (alu_operand_2     )
 );
 
+mux_2 #(
+   .DATA_W(32)
+) alu_operand_mux_forw_value_in0 (
+   .input_a (exe_immediate_extended),
+   .input_b (exe_regfile_data_2    ),
+   .select_a(exe_alu_src           ),
+   .mux_out (alu_operand_2     )
+);
+
+mux_2 #(
+   .DATA_W(32)
+) alu_operand_mux_forw_value_in1 (
+   .input_a (exe_immediate_extended),
+   .input_b (exe_regfile_data_2    ),
+   .select_a(exe_alu_src           ),
+   .mux_out (alu_operand_2     )
+);
+
+mux_2 #(
+   .DATA_W(32)
+) alu_operand_mux_forw_in0 (
+   .input_a (exe_immediate_extended),
+   .input_b (exe_regfile_data_2    ),
+   .select_a(exe_alu_src           ),
+   .mux_out (alu_operand_2     )
+);
+
+mux_2 #(
+   .DATA_W(32)
+) alu_operand_mux_forw_in1 (
+   .input_a (exe_immediate_extended),
+   .input_b (exe_regfile_data_2    ),
+   .select_a(exe_alu_src           ),
+   .mux_out (alu_operand_2     )
+);
 
 alu#(
    .DATA_W(32)
@@ -285,6 +323,32 @@ mux_2 #(
    .mux_out (regfile_waddr     )
 );
 
+mux_2 #(
+   .DATA_W(5)
+) forw_unit_rd_mux (
+   .input_a (mem_instruction[15:11]),
+   .input_b (mem_instruction[20:16]),
+   .select_a(mem_reg_dst          ),
+   .mux_out (mem_reg_rd    )
+);
+
+forw_unit forwarding_unit(
+  .mem_reg_rd(mem_reg_rd),
+  .wb_reg_rd(regfile_waddr),
+  .mem_reg_write(mem_reg_write),
+  .wb_reg_write(wb_reg_write),
+  .exe_reg_rs(exe_instruction[25:21]),
+  .exe_reg_rt(exe_instruction[20:16]),
+  .forw_operand_rs(forw_operand_rs_mux_mem),
+  .forw_operand_rt(forw_operand_rt_mux_mem),
+  .forw_operand_rs_wb(forw_operand_rs_mux_wb),
+  .forw_operand_rt_wb(forw_operand_rt_mux_wb)
+  );
+   
+   
+   
+   
+   
 endmodule
 
 
