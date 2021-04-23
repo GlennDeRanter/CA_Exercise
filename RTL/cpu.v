@@ -43,9 +43,9 @@ wire [      31:0] if_branch_pc,if_updated_pc,current_pc,if_jump_pc,
                   mem_instruction, wb_instruction;
 wire [       1:0] if_alu_op, id_alu_op, exe_alu_op;
 wire [       3:0] alu_control;
-wire              if_reg_dst,branch,if_mem_read,if_mem_2_reg,
-                  if_mem_write,if_alu_src, if_reg_write, jump,
-                  id_reg_dst,id_mem_read,id_mem_2_reg,
+wire              if_reg_dst,if_branch,if_mem_read,if_mem_2_reg,
+                  if_mem_write,if_alu_src, if_reg_write, if_jump, id_jump,
+                  id_reg_dst,id_branch, id_mem_read,id_mem_2_reg,
                   id_mem_write,id_alu_src, id_reg_write, 
                   exe_reg_dst,exe_mem_read,exe_mem_2_reg,
                   exe_mem_write,exe_alu_src, exe_reg_write, 
@@ -72,8 +72,8 @@ pc #(
    .branch_pc (id_branch_pc ),
    .jump_pc   (id_jump_pc   ),
    .zero_flag (zero_flag ),
-   .branch    (branch    ),
-   .jump      (jump      ),
+   .branch    (id_branch    ),
+   .jump      (id_jump      ),
    .current_pc(current_pc),
    .enable    (enable    ),
    .updated_pc(if_updated_pc)
@@ -100,24 +100,24 @@ sram #(
 control_unit control_unit(
    .opcode   (instruction[31:26]),
    .reg_dst  (if_reg_dst           ),
-   .branch   (branch            ),
+   .branch   (if_branch            ),
    .mem_read (if_mem_read          ),
    .mem_2_reg(if_mem_2_reg         ),
    .alu_op   (if_alu_op            ),
    .mem_write(if_mem_write         ),
    .alu_src  (if_alu_src           ),
    .reg_write(if_reg_write         ),
-   .jump     (jump              )
+   .jump     (if_jump              )
 );
 
 reg_arstn_en #(
-      .DATA_W(8)
+      .DATA_W(10)
 ) signal_pipe_IF_ID(
       .clk   (clk       ),
       .arst_n(arst_n    ),
-      .din   ({if_alu_op, if_alu_src, if_mem_write, if_mem_read, if_reg_write, if_mem_2_reg, if_reg_dst}),
+      .din   ({if_alu_op, if_alu_src, if_mem_write, if_mem_read, if_reg_write, if_mem_2_reg, if_reg_dst, if_branch, if_jump}),
       .en    (enable    ),
-      .dout  ({id_alu_op, id_alu_src, id_mem_write, id_mem_read, id_reg_write, id_mem_2_reg, id_reg_dst})
+      .dout  ({id_alu_op, id_alu_src, id_mem_write, id_mem_read, id_reg_write, id_mem_2_reg, id_reg_dst, id_branch, id_branch})
    );
 
 reg_arstn_en #(
