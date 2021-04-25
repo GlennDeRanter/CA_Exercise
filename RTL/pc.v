@@ -66,7 +66,7 @@ module pc#(
       .arst_n(arst_n    ),
       .din   (next_pc   ),
       .en    (enable    ),
-      .dout  ()
+      .dout  (current_pc)
    );
 
    
