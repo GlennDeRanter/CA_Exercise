@@ -59,7 +59,20 @@ module forw_unit(
                     forw_operand_rt <= 1'b0;
                     forw_operand_rt_wb_mem <= 1'b0;
                 end
+                
             end
+            else begin
+                forw_operand_rs <= 1'b0;
+                forw_operand_rs_wb_mem <= 1'b0;  
+                forw_operand_rt <= 1'b0;
+                forw_operand_rt_wb_mem <= 1'b0; 
+            end
+        end
+        else begin
+            forw_operand_rs <= 1'b0;
+            forw_operand_rs_wb_mem <= 1'b0;  
+            forw_operand_rt <= 1'b0;
+            forw_operand_rt_wb_mem <= 1'b0; 
         end
     end                               
 endmodule
