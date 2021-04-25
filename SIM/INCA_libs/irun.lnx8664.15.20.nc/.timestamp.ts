@@ -1,0 +1,14 @@
+1617027940 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/control_unit.v
+1619161352 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/alu_control.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/reg_arstn.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/saed32sram_mod.v
+1619339154 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/cpu.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/register_file.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/cpu_tb.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/reg_arstn_en.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/mux_2.v
+1619337352 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/pc.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/branch_unit.v
+1619161352 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/alu.v
+1617026686 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/sram.v
+1619338591 /users/students/r0706993/Documents/computer_architectures/CA_Exercise/RTL/forw_unit.v
