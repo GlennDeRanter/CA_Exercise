@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : cpu
 Version: N-2017.09-SP3
-Date   : Mon Apr 12 20:35:17 2021
+Date   : Sun Apr 25 11:24:29 2021
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -23,7 +23,7 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  reg_arstn_en_DATA_W8_0
+  reg_arstn_en_DATA_W8
                      ForQA                 saed32sram_tt1p05v25c
   cpu                280000                saed32sram_tt1p05v25c
   alu_DATA_W32       8000                  saed32sram_tt1p05v25c
@@ -36,70 +36,69 @@ Wire Load Model Mode: enclosed
   clock network delay (ideal)                             0.00       0.00
   signal_pipe_ID_EXE/r_reg_5_/CLK (DFFARX1_RVT)           0.00       0.00 r
   signal_pipe_ID_EXE/r_reg_5_/Q (DFFARX1_RVT)             0.39       0.39 f
-  signal_pipe_ID_EXE/dout[5] (reg_arstn_en_DATA_W8_0)     0.00       0.39 f
+  signal_pipe_ID_EXE/dout[5] (reg_arstn_en_DATA_W8)       0.00       0.39 f
   alu_operand_mux/select_a (mux_2_DATA_W32_3)             0.00       0.39 f
-  alu_operand_mux/U29/Y (AO22X1_RVT)                      4.93       5.32 f
-  alu_operand_mux/mux_out[0] (mux_2_DATA_W32_3)           0.00       5.32 f
-  alu/alu_in_1[0] (alu_DATA_W32)                          0.00       5.32 f
-  alu/U240/Y (XOR2X1_RVT)                                10.54      15.86 f
-  alu/DP_OP_18J3_122_7468_U33/CO (FADDX1_RVT)             0.21      16.07 f
-  alu/DP_OP_18J3_122_7468_U32/CO (FADDX1_RVT)             0.20      16.27 f
-  alu/DP_OP_18J3_122_7468_U31/CO (FADDX1_RVT)             0.20      16.47 f
-  alu/DP_OP_18J3_122_7468_U30/CO (FADDX1_RVT)             0.20      16.68 f
-  alu/DP_OP_18J3_122_7468_U29/CO (FADDX1_RVT)             0.20      16.88 f
-  alu/DP_OP_18J3_122_7468_U28/CO (FADDX1_RVT)             0.20      17.08 f
-  alu/DP_OP_18J3_122_7468_U27/CO (FADDX1_RVT)             0.20      17.28 f
-  alu/DP_OP_18J3_122_7468_U26/CO (FADDX1_RVT)             0.20      17.48 f
-  alu/DP_OP_18J3_122_7468_U25/CO (FADDX1_RVT)             0.20      17.68 f
-  alu/DP_OP_18J3_122_7468_U24/CO (FADDX1_RVT)             0.20      17.88 f
-  alu/DP_OP_18J3_122_7468_U23/CO (FADDX1_RVT)             0.20      18.08 f
-  alu/DP_OP_18J3_122_7468_U22/CO (FADDX1_RVT)             0.20      18.28 f
-  alu/DP_OP_18J3_122_7468_U21/CO (FADDX1_RVT)             0.20      18.48 f
-  alu/DP_OP_18J3_122_7468_U20/CO (FADDX1_RVT)             0.20      18.68 f
-  alu/DP_OP_18J3_122_7468_U19/CO (FADDX1_RVT)             0.20      18.89 f
-  alu/DP_OP_18J3_122_7468_U18/CO (FADDX1_RVT)             0.20      19.09 f
-  alu/DP_OP_18J3_122_7468_U17/CO (FADDX1_RVT)             0.20      19.29 f
-  alu/DP_OP_18J3_122_7468_U16/CO (FADDX1_RVT)             0.20      19.49 f
-  alu/DP_OP_18J3_122_7468_U15/CO (FADDX1_RVT)             0.20      19.69 f
-  alu/DP_OP_18J3_122_7468_U14/CO (FADDX1_RVT)             0.20      19.89 f
-  alu/DP_OP_18J3_122_7468_U13/CO (FADDX1_RVT)             0.20      20.09 f
-  alu/DP_OP_18J3_122_7468_U12/CO (FADDX1_RVT)             0.20      20.29 f
-  alu/DP_OP_18J3_122_7468_U11/CO (FADDX1_RVT)             0.20      20.49 f
-  alu/DP_OP_18J3_122_7468_U10/CO (FADDX1_RVT)             0.20      20.69 f
-  alu/DP_OP_18J3_122_7468_U9/CO (FADDX1_RVT)              0.20      20.89 f
-  alu/DP_OP_18J3_122_7468_U8/CO (FADDX1_RVT)              0.20      21.09 f
-  alu/DP_OP_18J3_122_7468_U7/CO (FADDX1_RVT)              0.20      21.29 f
-  alu/DP_OP_18J3_122_7468_U6/CO (FADDX1_RVT)              0.20      21.49 f
-  alu/DP_OP_18J3_122_7468_U5/CO (FADDX1_RVT)              0.20      21.69 f
-  alu/DP_OP_18J3_122_7468_U4/CO (FADDX1_RVT)              0.20      21.89 f
-  alu/DP_OP_18J3_122_7468_U3/CO (FADDX1_RVT)              0.19      22.08 f
-  alu/U1615/Y (XOR2X1_RVT)                                0.15      22.23 f
-  alu/U1616/Y (NAND2X0_RVT)                               0.07      22.30 r
-  alu/U1619/Y (AND4X1_RVT)                                0.06      22.36 r
-  alu/U1620/Y (NAND2X0_RVT)                               0.05      22.41 f
-  alu/U1621/Y (AO221X1_RVT)                               0.11      22.52 f
-  alu/U1630/Y (NOR3X0_RVT)                                0.72      23.24 r
-  alu/U1631/Y (NAND4X0_RVT)                               0.08      23.32 f
-  alu/U1632/Y (NOR3X0_RVT)                                0.12      23.44 r
-  alu/zero_flag (alu_DATA_W32)                            0.00      23.44 r
-  program_counter/zero_flag (pc_DATA_W32)                 0.00      23.44 r
-  program_counter/U3/Y (AND2X1_RVT)                       0.15      23.58 r
+  alu_operand_mux/U27/Y (AO22X1_RVT)                      4.94       5.33 f
+  alu_operand_mux/mux_out[0] (mux_2_DATA_W32_3)           0.00       5.33 f
+  alu/alu_in_1[0] (alu_DATA_W32)                          0.00       5.33 f
+  alu/U559/Y (XOR2X1_RVT)                                10.57      15.90 f
+  alu/DP_OP_18J2_122_7468_U33/CO (FADDX1_RVT)             0.21      16.11 f
+  alu/DP_OP_18J2_122_7468_U32/CO (FADDX1_RVT)             0.20      16.31 f
+  alu/DP_OP_18J2_122_7468_U31/CO (FADDX1_RVT)             0.20      16.51 f
+  alu/DP_OP_18J2_122_7468_U30/CO (FADDX1_RVT)             0.20      16.72 f
+  alu/DP_OP_18J2_122_7468_U29/CO (FADDX1_RVT)             0.20      16.92 f
+  alu/DP_OP_18J2_122_7468_U28/CO (FADDX1_RVT)             0.20      17.12 f
+  alu/DP_OP_18J2_122_7468_U27/CO (FADDX1_RVT)             0.20      17.32 f
+  alu/DP_OP_18J2_122_7468_U26/CO (FADDX1_RVT)             0.20      17.52 f
+  alu/DP_OP_18J2_122_7468_U25/CO (FADDX1_RVT)             0.20      17.72 f
+  alu/DP_OP_18J2_122_7468_U24/CO (FADDX1_RVT)             0.20      17.92 f
+  alu/DP_OP_18J2_122_7468_U23/CO (FADDX1_RVT)             0.20      18.12 f
+  alu/DP_OP_18J2_122_7468_U22/CO (FADDX1_RVT)             0.20      18.32 f
+  alu/DP_OP_18J2_122_7468_U21/CO (FADDX1_RVT)             0.20      18.53 f
+  alu/DP_OP_18J2_122_7468_U20/CO (FADDX1_RVT)             0.20      18.73 f
+  alu/DP_OP_18J2_122_7468_U19/CO (FADDX1_RVT)             0.20      18.93 f
+  alu/DP_OP_18J2_122_7468_U18/CO (FADDX1_RVT)             0.20      19.13 f
+  alu/DP_OP_18J2_122_7468_U17/CO (FADDX1_RVT)             0.20      19.33 f
+  alu/DP_OP_18J2_122_7468_U16/CO (FADDX1_RVT)             0.20      19.53 f
+  alu/DP_OP_18J2_122_7468_U15/CO (FADDX1_RVT)             0.20      19.73 f
+  alu/DP_OP_18J2_122_7468_U14/CO (FADDX1_RVT)             0.20      19.93 f
+  alu/DP_OP_18J2_122_7468_U13/CO (FADDX1_RVT)             0.20      20.13 f
+  alu/DP_OP_18J2_122_7468_U12/CO (FADDX1_RVT)             0.20      20.33 f
+  alu/DP_OP_18J2_122_7468_U11/CO (FADDX1_RVT)             0.20      20.53 f
+  alu/DP_OP_18J2_122_7468_U10/CO (FADDX1_RVT)             0.20      20.73 f
+  alu/DP_OP_18J2_122_7468_U9/CO (FADDX1_RVT)              0.20      20.93 f
+  alu/DP_OP_18J2_122_7468_U8/CO (FADDX1_RVT)              0.20      21.13 f
+  alu/DP_OP_18J2_122_7468_U7/CO (FADDX1_RVT)              0.20      21.33 f
+  alu/DP_OP_18J2_122_7468_U6/CO (FADDX1_RVT)              0.20      21.53 f
+  alu/DP_OP_18J2_122_7468_U5/CO (FADDX1_RVT)              0.20      21.73 f
+  alu/DP_OP_18J2_122_7468_U4/CO (FADDX1_RVT)              0.20      21.93 f
+  alu/DP_OP_18J2_122_7468_U3/CO (FADDX1_RVT)              0.19      22.12 f
+  alu/U1585/Y (XOR2X1_RVT)                                0.15      22.27 f
+  alu/U1586/Y (NAND2X0_RVT)                               0.07      22.34 r
+  alu/U1589/Y (AND4X1_RVT)                                0.06      22.40 r
+  alu/U1590/Y (NAND2X0_RVT)                               0.05      22.45 f
+  alu/U1591/Y (AO221X1_RVT)                               0.11      22.56 f
+  alu/U1600/Y (NOR3X0_RVT)                                0.72      23.28 r
+  alu/U1601/Y (NAND4X0_RVT)                               0.08      23.36 f
+  alu/U1602/Y (NOR3X0_RVT)                                0.12      23.48 r
+  alu/zero_flag (alu_DATA_W32)                            0.00      23.48 r
+  program_counter/zero_flag (pc_DATA_W32)                 0.00      23.48 r
+  program_counter/U3/Y (AND2X1_RVT)                       0.15      23.62 r
   program_counter/mux_branch/select_a (mux_2_DATA_W32_1)
-                                                          0.00      23.58 r
-  program_counter/mux_branch/U1/Y (INVX1_RVT)             0.11      23.70 f
-  program_counter/mux_branch/U10/Y (AND2X1_RVT)           0.13      23.83 f
+                                                          0.00      23.62 r
+  program_counter/mux_branch/U1/Y (INVX1_RVT)             0.11      23.74 f
+  program_counter/mux_branch/U2/Y (AND2X1_RVT)            0.13      23.87 f
   program_counter/mux_branch/mux_out[2] (mux_2_DATA_W32_1)
-                                                          0.00      23.83 f
+                                                          0.00      23.87 f
   program_counter/mux_jump/input_b[2] (mux_2_DATA_W32_0)
-                                                          0.00      23.83 f
-  program_counter/mux_jump/U10/Y (AND2X1_RVT)             0.09      23.92 f
+                                                          0.00      23.87 f
   program_counter/mux_jump/mux_out[2] (mux_2_DATA_W32_0)
-                                                          0.00      23.92 f
+                                                          0.00      23.87 f
   program_counter/pc_register/din[2] (reg_arstn_en_32_s00000000)
-                                                          0.00      23.92 f
+                                                          0.00      23.87 f
   program_counter/pc_register/r_reg_2_/D (DFFARX1_RVT)
-                                                          0.05      23.97 f
-  data arrival time                                                 23.97
+                                                          0.05      23.92 f
+  data arrival time                                                 23.92
 
   clock clk (rise edge)                                 100.00     100.00
   clock network delay (ideal)                             0.00     100.00
@@ -110,9 +109,9 @@ Wire Load Model Mode: enclosed
   data required time                                                99.87
   --------------------------------------------------------------------------
   data required time                                                99.87
-  data arrival time                                                -23.97
+  data arrival time                                                -23.92
   --------------------------------------------------------------------------
-  slack (MET)                                                       75.91
+  slack (MET)                                                       75.95
 
 
 1
